@@ -5,8 +5,6 @@
 #
 
 BASE_DIR=`dirname "$0"`/..
-echo $BASE_DIR
-
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false
@@ -26,7 +24,6 @@ fi
 
 PERF_CLASSPATH=$(echo ${BASE_DIR}/lib/*.jar | tr ' ' ':')
 PERF_CLASSPATH=${PERF_CLASSPATH}:${BASE_DIR}/config/
-echo $PERF_CLASSPATH
 JAVA_OPTS="${JAVA_OPTS} -Xms128m -Xmx512m -XX:MaxDirectMemorySize=10G -Dcom.tc.productkey.path=${BASE_DIR}/config/terracotta-license.key"
 dt=`date +%Y%m%d_%H%M%S`
 # Execute Step 1 of Ping
