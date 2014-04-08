@@ -171,6 +171,53 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		
+		<profile>
+			<id>ehcache-2.8.x</id>
+			<properties>
+				<bigmemory.version>4.1.1</bigmemory.version>
+				<ehcache-ee.version>2.8.1</ehcache-ee.version>
+				<toolkit.version>4.1.1</toolkit.version>
+				<slf4j.version>1.7.1</slf4j.version>
+				<junit.version>4.11</junit.version>
+				<net.sf.ehcache.configurationResourceName>ehcache.xml</net.sf.ehcache.configurationResourceName>
+			</properties>
+			<dependencies>
+				<!-- EhCache -->
+				<!-- <dependency>
+					<groupId>org.terracotta.bigmemory</groupId>
+					<artifactId>bigmemory</artifactId>
+					<version>${bigmemory.version}</version>
+				</dependency> -->
+				<dependency>
+					<groupId>net.sf.ehcache</groupId>
+					<artifactId>ehcache-ee</artifactId>
+					<version>${ehcache-ee.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.terracotta</groupId>
+					<artifactId>terracotta-toolkit-runtime-ee</artifactId>
+					<version>${toolkit.version}</version>
+				</dependency>
+				<!-- SLF4J -->
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+					<version>${slf4j.version}</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-simple</artifactId>
+					<version>${slf4j.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		
+		
+		
+		
+		
 		<profile>
 			<id>ehcache-2.7.x</id>
 			<properties>
