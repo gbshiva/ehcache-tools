@@ -36,9 +36,9 @@ public class cacheKeysPrint {
 	}
 
 	public  static void printKeys(Cache cache) throws Exception{
-		List<String> cacheKeyList = cache.getKeys();
+		List<Object> cacheKeyList = cache.getKeys();
 		System.out.println("Listing Keys for cache "+cache.getName() +" Size = "+cacheKeyList.size() );
-		Iterator<String> iterator = cacheKeyList.iterator();
+		Iterator<Object> iterator = cacheKeyList.iterator();
 		while (iterator.hasNext()) {
 			System.out.println(iterator.next());
 		}

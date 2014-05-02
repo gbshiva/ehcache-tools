@@ -6,6 +6,7 @@ import java.util.List;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
+import org.apache.commons.lang3.ClassUtils;
 
 public class cacheKeyValuePrint {
 
@@ -54,16 +55,16 @@ public class cacheKeyValuePrint {
 
 
 	private static void printAllValues(Cache cache){
-		List<String> cacheKeyList = cache.getKeys();
+		List<Object> cacheKeyList = cache.getKeys();
 		System.out.println("Listing Keys and Values for cache "+cache.getName() +" Size = "+cacheKeyList.size() );
-		Iterator<String> iterator = cacheKeyList.iterator();
+		Iterator<Object> iterator = cacheKeyList.iterator();
 		while (iterator.hasNext()) {
 			printKeyValue(cache, iterator.next());
 		}
 
 	}
 
-	private static void printKeyValue(Cache cache, String key){
+	private static void printKeyValue(Cache cache, Object key){
 		Element e = cache.get(key);
 		if( e != null){
 			printValue(e);
@@ -77,16 +78,21 @@ public class cacheKeyValuePrint {
 
 	private static void printValue(Element e){
 		if (e !=  null){
-
-			if ( e.getObjectValue() instanceof String ){
+			Object val = e.getObjectValue();
+			if ( ClassUtils.isPrimitiveOrWrapper(val.getClass()) || ( val instanceof String ) ){
 				System.out.println("Key="+e.getObjectKey()+" Value = "+ e.getObjectValue());
 			}
 			if ( e.getObjectValue() instanceof List ){
-				System.out.println("Key="+e.getObjectKey());
-				List<String> cacheValueList =(List) e.getObjectValue();
-				Iterator<String> iterator = cacheValueList.iterator();
+				System.out.println("Key="+e.getObjectKey() + "Value is of type List");
+				List<Object> cacheValueList =(List) e.getObjectValue();
+				Iterator<Object> iterator = cacheValueList.iterator();
 				while (iterator.hasNext()) {
-					System.out.println(iterator.next());
+					Object lv = iterator.next();
+					if ( ClassUtils.isPrimitiveOrWrapper(lv.getClass())  || ( val instanceof String ) ){
+						System.out.println(lv);
+					}
+				
+				
 				}
 			}
 			if (e.getObjectValue() == null){
@@ -99,4 +105,5 @@ public class cacheKeyValuePrint {
 		}
 
 	}
+	
 }
